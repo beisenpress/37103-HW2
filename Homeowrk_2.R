@@ -33,10 +33,9 @@ describe(detergent_DF[,c("p_tide128","p_tide64","p_wisk64","p_t128_t64","p_t64_w
 hist(detergent_DF$p_t128_t64, main = "Histogram of Tide 128 and Tide 64 Price Difference", xlab = "Price Difference ($)", col = "blue")
 hist(detergent_DF$p_t64_w64, main = "Histogram of Tide 64 and Wisk 64 Price Difference", xlab = "Price Difference ($)", col = "blue")
 
-# Tide sales are much higher than wish.  
+# Tide sales are much higher than wisk.  
 # Tide 128 is priced about $4 above Tide 64, but there is a fair amount of variety in price differences
-# Wish 64 is usually priced lower than Tide 64, by 30 cents on average. 
-# However, tide has a lower price a fair amount of the time.
+# Wish 64 is usually priced lower than Tide 64, by 30 cents on average. However, tide has a lower price a fair amount of the time.
 
 ####################################################
 ################## Part 2 ##########################
@@ -144,7 +143,7 @@ beta23 <- summary(reg.t128.4)$coefficients[3,1]
 
 # New Quantity of Tide128 = (1 + Price change for Tide128)^beta11 * (1 + Price change for Tide64)^beta12 * Old Quantity of Tide128
 
-# Create Data frame of price changes
+# Create matrix that will be used to calculate all price and volume changes
 scenario <- c("Base", "a", "b", "c", "d")
 p_change_t128 <- c(0,0.05,-0.05,0.05,-0.05)
 p_change_t64 <- c(0,0.05,-0.05,-0.05,+0.05)
@@ -181,7 +180,7 @@ price_change_results$base_profit_t64 <- price_change_results$profit_tide64[1]
 price_change_results$profit_change <- (price_change_results$profit_tide128 + price_change_results$profit_tide64
                                           - price_change_results$base_profit_t128 - price_change_results$base_profit_t64)
 
-# Create a dataframe without the base price
+# Create a dataframe excluding the base price row
 price_change_results_2 <- price_change_results[-1,c("p_change_t64", "p_change_t128", "profit_change")]
 
 
