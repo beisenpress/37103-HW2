@@ -137,9 +137,9 @@ beta11 <- summary(reg.t128.4)$coefficients[1,1]
 beta12 <- summary(reg.t128.4)$coefficients[2,1]
 beta13 <- summary(reg.t128.4)$coefficients[3,1]
 
-beta22 <- summary(reg.t128.4)$coefficients[1,1]
-beta21 <- summary(reg.t128.4)$coefficients[2,1]
-beta23 <- summary(reg.t128.4)$coefficients[3,1]
+beta22 <- summary(reg.t64.4)$coefficients[1,1]
+beta21 <- summary(reg.t64.4)$coefficients[2,1]
+beta23 <- summary(reg.t64.4)$coefficients[3,1]
 
 # New Quantity of Tide128 = (1 + Price change for Tide128)^beta11 * (1 + Price change for Tide64)^beta12 * Old Quantity of Tide128
 
