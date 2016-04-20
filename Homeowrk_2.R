@@ -91,6 +91,7 @@ summary(reg.t128.3)
 reg.t64.3 <- lm(log(v_tide64) ~ log(p_tide64) + log(p_tide128) + log(p_wisk64) + week, data = detergent_DF_2)
 summary(reg.t64.3)
 
+
 # The estimates for Tide 128 make less sense now.  Cross price elasticity with Tide 64 is now negative, when it should be positive.
 # The own price elasticity has decreased to -3.5, which is more reasonable.
 
@@ -104,6 +105,12 @@ reg.t128.4 <- lm(log(v_tide128) ~ log(p_tide128) + log(p_tide64) + log(p_wisk64)
 summary(reg.t128.4)
 reg.t64.4 <- lm(log(v_tide64) ~ log(p_tide64) + log(p_tide128) + log(p_wisk64) + week + factor(store) - 1, data = detergent_DF_2)
 summary(reg.t64.4)
+
+reg.t128.5 <- lm(log(q_tide128) ~ log(p_tide128) + log(p_tide64) + log(p_wisk64) + week + factor(store) - 1, data = detergent_DF_2)
+summary(reg.t128.5)
+reg.t64.5 <- lm(log(q_tide64) ~ log(p_tide64) + log(p_tide128) + log(p_wisk64) + week + factor(store) - 1, data = detergent_DF_2)
+summary(reg.t64.5)
+
 
 # For Tide 128, the direction of each elasticity makes sense.  The own price elasticity is -2.4, which seems very reasonable.
 # The cross price elasticity for Tide 64 is not statistically significantly differnt from zero.
@@ -190,6 +197,11 @@ profit_changes = reshape(price_change_results_2,
                        idvar = "p_change_t64",
                        direction = "wide")
 colnames(profit_changes) = c("p_change_t64", "p_t128_increase_of_5%", "p_t128_decrease_of_5%")
+
+write.csv(price_change_results,"Price Change Results.csv")
+
+write.csv(profit_changes,"Profit Changes.csv")
+
 
 ####################################################
 ################## Part 7 ##########################
